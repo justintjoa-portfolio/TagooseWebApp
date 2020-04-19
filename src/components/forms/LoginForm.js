@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import { Form, Button } from "semantic-ui-react";
 import Validator from 'validator';
 import InlineError from "../messages/InlineError";
@@ -30,6 +31,9 @@ class LoginForm extends React.Component {
                 errors
             }
         );
+        if (Object.keys(errors).length === 0) {
+            this.props.submit(this.state.data);
+        }
     };
 
     validate = (data) => {
@@ -71,14 +75,14 @@ class LoginForm extends React.Component {
                     !!errors.password
                 }>
                     <label 
-                        htmlFor="password">Email
+                        htmlFor="password">Password
                     </label>
                     <input 
                         type="password" 
                         id = "password" 
                         name="password" 
                         placeholder="Make it secure!"
-                        value={data.email}
+                        value={data.password}
                         onChange={this.onChange}
                     />
                     {
@@ -94,4 +98,8 @@ class LoginForm extends React.Component {
 
 
 }
+
+LoginForm.propTypes = {
+    submit: PropTypes.func.isRequired
+};
 export default LoginForm
