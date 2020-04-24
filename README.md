@@ -66,3 +66,11 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+docker build -t react:appfront .
+docker run -it -p 4001:4000 react:appfront
+
+Base URL: http://localhost:4001
+
+Make sure you type docker ps and do a docker stop for all entries in Container ID (first line only)

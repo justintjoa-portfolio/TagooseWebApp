@@ -5,9 +5,11 @@ import LoginForm from "../forms/LoginForm";
 import {login} from "../../actions/auth";
 
 //import { Link } from "react-router-dom"
+console.log("hello")
 class Login extends React.Component {
 
     submit = data => this.props.login(data).then(() => this.props.history.push("/"));
+
 
     render() {
         return (

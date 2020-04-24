@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 const HomePage = () => (
 
     <div>
-        <h1>Tagoose</h1>
+        <h1>Welcome to Tagoose!</h1>
         <Link to="/login">Login</Link>
     </div>
 );
