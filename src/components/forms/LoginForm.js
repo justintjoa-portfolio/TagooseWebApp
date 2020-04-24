@@ -1,8 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+//javascript and react get data from onsubmit
+//import PropTypes from 'prop-types'
 import { Form, Button, Message} from "semantic-ui-react";
 import Validator from 'validator';
-import InlineError from "../messages/InlineError";
+
+
+
 
 class LoginForm extends React.Component {
     state = {
@@ -15,6 +18,9 @@ class LoginForm extends React.Component {
 
     }
 
+
+
+
     onChange = e => 
         this.setState(
             {
@@ -25,6 +31,11 @@ class LoginForm extends React.Component {
         );
 
     onSubmit = () => {
+        console.log("submitting")
+        var email = this.state.data.email
+        var password = this.state.data.password
+        console.log("the email is" + email)
+        console.log("The password is" + password)
         const errors = this.validate(this.state.data);
         this.setState(
             {
@@ -37,6 +48,7 @@ class LoginForm extends React.Component {
                     loading: true
                 }
             );
+            /*
             this.props.submit(this.state.data).catch(err=>
                 this.setState( 
                     {
@@ -44,8 +56,10 @@ class LoginForm extends React.Component {
                     }
                 )    
             );
+            */
         }
     };
+
 
     validate = (data) => {
         const errors = {};
@@ -57,7 +71,6 @@ class LoginForm extends React.Component {
         }
         return errors;
     }
-
     render() {
         const {data, errors, loading} = this.state;
         return (
@@ -84,9 +97,6 @@ class LoginForm extends React.Component {
                         value={data.email}
                         onChange={this.onChange}
                     />
-                    {
-                        errors.email && <InlineError text={errors.email} />
-                    }
                 </Form.Field>
                 <Form.Field error={
                     !!errors.password
@@ -102,21 +112,32 @@ class LoginForm extends React.Component {
                         value={data.password}
                         onChange={this.onChange}
                     />
-                    {
-                        errors.password && <InlineError text={errors.password} />
-                    }
                 </Form.Field>
-                <Button primary>
+                <Button primary onClick={this.handleLogin}>
                     Login
                 </Button>
             </Form>
         );
+        
+    
     }
-
+    handleLogin() {
+        console.log("great!");
+        console.log(this.state)
+        /*
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+          });
+          */
+    }
+    
+    
 
 }
 
-LoginForm.propTypes = {
-    submit: PropTypes.func.isRequired
-};
+
+
 export default LoginForm
